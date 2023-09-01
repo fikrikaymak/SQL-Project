@@ -27,7 +27,7 @@ SELECT title
 FROM film
 WHERE LOWER(title) LIKE '%t%t%t%t%';
 
---3.2
+--3.2--
 
 SELECT title 
 FROM film
