@@ -23,11 +23,23 @@ AND replacement_cost=
 (
   SELECT MIN (replacement_cost) FROM film
   );
+
 --4--
+
+--En cok satin alim yapan ilk 10 musteriyi getirdik--
 SELECT customer.first_name,customer.last_name, payment.customer_id, COUNT(*) AS number_of_purchases 
 FROM payment
 INNER JOIN customer ON customer.customer_id = payment.customer_id
 GROUP BY payment.customer_id, customer.first_name, customer.last_name
 ORDER BY number_of_purchases DESC 
 LIMIT 10;
---En cok satin alim yapan ilk 10 musteriyi getirdik--
+
+--En cok harcama yapan ilk 10 musteriyi getirdik--
+SELECT SUM(amount), customer.first_name,customer.last_name, payment.customer_id
+FROM payment
+INNER JOIN customer ON customer.customer_id = payment.customer_id
+GROUP BY payment.customer_id, customer.first_name, customer.last_name
+ORDER BY SUM(amount) DESC 
+LIMIT 10;
+
+
